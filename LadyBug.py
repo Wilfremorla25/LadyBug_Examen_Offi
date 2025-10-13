@@ -28,4 +28,16 @@ def game_loop():
         #SALIR CON ESC
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
-                running = False   
+                running = False
+                #LOGICA DEL JUEGO
+                #DIBUJO
+                screen.fill((0, 0, 0))
+                #CONTROL DE FPS
+                pygame.display.flip()
+                clock.tick(FPS)
+                #SALIR
+                pygame.quit()
+                sys.exit()
+                #EJECUCION DE CODIGO
+                if __name__ == "__main__":
+                    game_loop()
