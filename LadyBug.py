@@ -1,5 +1,6 @@
 import pygame
 import sys
+from Scripts.Maze import TILE_SIZE, MAPA_INICIAL
 
 #INICIALIZACION
 pygame.init()
