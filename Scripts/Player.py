@@ -32,3 +32,14 @@ class Player(pygame.sprite.Sprite):
         #VERIFICAR COLISIONES
         if target_tile == TILE_WALL:
             return
+        #MOVIMIENTO VALIDO
+        self.col = new_col
+        self.row = new_row
+        self._update_pixels_position()
+        
+        #VERIFICACION DE COLECCION Y BLOQUES DINAMICOS
+        if target_tile == TILE_COLLECTIBLE:
+            maze_map[new_row][new_col] = 0
+            print("Objeto obtenido XD")
+        elif target_tile == TILE_DINAMIC:
+            switch_dynamic_block(maze_map, new_row, new_col)
