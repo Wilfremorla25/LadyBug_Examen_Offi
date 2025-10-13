@@ -11,3 +11,21 @@ SCREEN_HEIGHT = 600
 #PATALLA COMPLETA
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), pygame.FULLSCREEN)
 pygame.display.set_caption("Lady Bug Game")
+
+#VELOCIDAD DE JUEGO
+clock = pygame.time.Clock()
+FPS = 60
+
+#FUNCION DE JUEGO
+def game_loop():
+    running = True
+    while running:
+        
+  #EVENTOS
+     for event in pygame.event.get():
+      if event.type == pygame.QUIT:
+        running = False
+        #SALIR CON ESC
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                running = False   
