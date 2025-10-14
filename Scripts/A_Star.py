@@ -6,4 +6,26 @@ from .Maze import TILE_WALL, TILE_PATH
 
 class Node:
     def __init__(self, parent = None, position = None):
-        self.parent = parent
+        self.parent = parent 
+        self.position = position
+        
+        #COSTOS DE A* STARS
+        self.g = 0
+        self.h = 0
+        self.f = 0
+        
+        def __eq__(self, other):
+            return self.position == other.position
+        
+        def AStar(maze_map, start_pos, end_pos):
+            
+        #INICIALIZACION DE A* STAR
+         start_node = Node(None, start_pos)
+         end_node = Node(None, end_pos)
+         
+         open_list = [start_node]
+         
+         closed_list = (set) 
+         
+         while open_list:
+             current_node = min(open_list, key=lambda node: node.f)
