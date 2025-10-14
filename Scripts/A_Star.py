@@ -60,3 +60,15 @@ class Node:
                     #NO, EVALUAR NODO CERRADOS 
                     if node_position in closed_list:
                          continue
+                     #CREANDO NODO HIJO
+                    new_node = Node(current_node, node_position)
+                    # 1 COSTO G
+                    new_node.g = current_node.g + 1
+                    # DISTANCIA HEURISTICA H
+                    new_node.h = abs(node_position[0] - end_pos[0] + abs(new_node.position[1] - end_pos[1]))
+                    new_node.f = new_node.g + new_node.h
+                    #NODO YA ESTA EN LA LISTA ABIERTA
+                    if any(open_node.position == new_node.position and open_node.g <= new_node.g for open_node in open_list):
+                        continue
+                    open_list.append(new_node)
+                    return [] 
