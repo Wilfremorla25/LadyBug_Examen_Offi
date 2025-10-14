@@ -29,3 +29,18 @@ class Node:
          
          while open_list:
              current_node = min(open_list, key=lambda node: node.f)
+             open_list.remove(current_node)
+         closed_list.add(current_node.position)
+         #PRUEBA DE META
+         if current_node.position == end_pos:
+             path = []
+             current = current_node
+             while current is not None:
+                    path.append(current.position)
+                    current = current.parent
+                    return path[::-1][1:]
+                
+                #GENERAR NODOS VECINOS
+        neighbors = [(0, -1), (0, 1), (-1, 0), (1, 0)]
+        for new_position in neighbors:
+            
