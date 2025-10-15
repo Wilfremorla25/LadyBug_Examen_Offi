@@ -24,6 +24,23 @@ class Enemy(pygame.sprite.Sprite):
         self.move_counter = 0
         self.move_frequency = 15
         
-        def _
+        def _update_pixel_position(self):
+            self.rect.x = self.col * TILE_SIZE
+            self.rect.y = self.row * TILE_SIZE
+            def calculate_path(self, player_row, player_col):
+                start = (self.row, self.col)
+                end = (player_row, player_col)
+                
+                #LLAMAR A* STAR
+                self.path = AStar(MAPA_INICIAL, start, end)
+                
+                def move_along_path(self):
+                    if self.path:
+                        next_step = self.pop(0)
+                        self.row = next_step[0]
+                        self.col = next_step[1]
+                        self._update_pixel_position()
+                        return True
+                    return False
         
         
