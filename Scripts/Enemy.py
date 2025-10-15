@@ -42,5 +42,19 @@ class Enemy(pygame.sprite.Sprite):
                         self._update_pixel_position()
                         return True
                     return False
+                def update(self, player):
+                    self.move_counter += 1
+                    #ACTUALIZAR RUTA CARA X TIEMPO
+                    if self.move_counter % (self.move_frequency * 3) == 0:
+                        self.calculate_path(player.row, player.col)
+                        
+                        #EL ENEMIGO SE MUEVE CUANDO LLEGA A LA FRECUENCIA
+                        if self.move_counter >= self.move_frequency:
+                             self.move_counter = 0
+                             self.move_along_path()
+                             
+                             #COLISION DEL JUEGO
+                             if self.row == player.row and self.col == player.col:
+                                 print("PERDISTE, EL HUESASO TE DEJASTE AGARRAR")                  
         
         
