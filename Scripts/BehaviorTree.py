@@ -84,6 +84,26 @@ class Node:
                                                                                 return RUNNING
                                                                             else:
                                                                                 return FAILURE
+                                                                            
+                                                                            #ARBOL PRINCIPAL
+                                                                            def create_behavior_tree():
+                                                                                PATROL_POINTS = [(1,1), (1,8), (8,8), (8,1)]
+                                                                                #PATRULLA
+                                                                                patrol_task = Task_Patrol(PATROL_POINTS)
+                                                                                persue_sequence = Sequence([
+                                                                                    Task_CheckPlayerRange(range_limit = 5),
+                                                                                    Task_PursuePlayer()
+                                                                                    ],
+                                                                                    name = "Persue Sequence"
+                                                                                    )
+                                                                                #SELECTOR PRINCIPAL
+                                                                                root_selector = Selector([
+                                                                                    persue_sequence,
+                                                                                    patrol_task
+                                                                                    ],
+                                                                                     name="Root Selector"
+                                                                                 )
+                                                                                return root_selector
                                                                         
                                         
             
