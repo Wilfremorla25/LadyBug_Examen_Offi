@@ -45,6 +45,45 @@ class Node:
                                         super().__init__("CheckRange")
                                         self.range_limit = range_limit
                                         
-                                        def
+                                        def execute(self, agent, player):
+                                            dist = abs(agent.row - player.row) + abs(agent.col -player.col)
+                                            if dist <= self.range_limit:
+                                                return SUCCESS
+                                            else:
+                                                return FAILURE
+                                            class Task_PursuePlayer(Node):
+                                                # USO DE A* STAR PARA CALCULAR RUTA
+                                                def __init__(self, name="Pursue"):
+                                                    super().__init__(name)
+                                                    
+                                                    def execute(self, agent, player):
+                                                        #CALCULA RUTA
+                                                        agent.calculate_path(player.row, player.col)
+                                                        
+                                                        if agent.move_along_path():
+                                                            return SUCCESS
+                                                        else:
+                                                            return FAILURE
+                                                        
+                                                        class Task_Patrol(Node):
+                                                            #MOVER AGENTRE ENTRE PUNTOS PREDEFINIDOS
+                                                            def __init__(self, points, name="Patrol"):
+                                                                super().__init__(name)
+                                                                self.patrol_points = points
+                                                                self.current_target_index = 0
+                                                                
+                                                                def execute(self, agent, player):
+                                                                    target = self.patrol_points[self.current_target_index]
+                                                                    if (agent.row, agent.col) == target_pos:
+                                                                        self.current_target_index = (self.current_target_index + 1) % len(self.patrol_points)
+                                                                        target_pos = self.patrol_points[self.current_target_index]
+                                                                        
+                                                                        if not agent.path or agent.path[-1] != target_pos:
+                                                                            agent.calculate_path(target_pos[0], target_pos[1])
+                                                                            if agent.move_along_path():
+                                                                                return RUNNING
+                                                                            else:
+                                                                                return FAILURE
+                                                                        
                                         
             
