@@ -19,4 +19,32 @@ class Node:
             def __init__(self, children= None, name=""):
                 super().__init__(name)
                 self.children = children if children is not None else []
+                
+                class Selector(Composite):
+                    def execute(self, agent, player):
+                        for child in self.children:
+                            result = child.execute(agent, player)
+                            if result == SUCCESS:
+                                return SUCCESS
+                            if result == RUNNING:
+                                return RUNNING
+                            return FAILURE
+                        class Sequence(Composite):
+                            def execute(self, agent, player):
+                                for child in self.children:
+                                    result = child.execute(agent, player)
+                                    
+                                    if result == FAILURE:
+                                        return FAILURE
+                                    if result == RUNNING:
+                                        return RUNNING
+                                    return SUCCESS
+                                #ACCIONES Y CONDICIONES
+                                class Task_CheckPlayerRange(Node):
+                                    def __init__(self,range_limit = 5):
+                                        super().__init__("CheckRange")
+                                        self.range_limit = range_limit
+                                        
+                                        def
+                                        
             
